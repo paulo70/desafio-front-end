@@ -11,7 +11,7 @@ const htmlmin = require('gulp-htmlmin');
 const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant');
 const runSequence = require('run-sequence');
-const entryPoint = 'public/assets/js/main.js';
+const entryPoint = 'htdocs/assets/scripts/js/index.js';
 
 
 gulp.task('transpiler', () => {
