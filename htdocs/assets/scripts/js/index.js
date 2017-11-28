@@ -1,41 +1,41 @@
-(function(){
- const app = (function(){
- 	
- 	'user strict';
+(function() {
+    const app = (function() {
 
- 	const xhr = new XMLHttpRequest();
- 	const box_spotlight = document.querySelector('[data-js="content-spotlight"]');
- 	const box_brazil = document.querySelector('[data-js="content-brazil"]');
- 	const box_world = document.querySelector('[data-js="content-world"]');
+        'user strict';
 
- 	function requestData(){
- 		xhr.open('GET', '../../data.json');
- 		xhr.send();
- 		xhr.addEventListener('readystatechange', handleStatus, false);
- 	}
+        const xhr = new XMLHttpRequest();
+        const box_spotlight = document.querySelector('[data-js="content-spotlight"]');
+        const box_brazil = document.querySelector('[data-js="content-brazil"]');
+        const box_world = document.querySelector('[data-js="content-world"]');
 
- 	function handleStatus(){
-    if(isRequestOk(xhr)){
-    	const data = parseData(xhr);
-    	templateSpotlight(data.section);
-    	templateBrazil(data.section);
-    	templateWorld(data.section);
-    }
- 	}
+        function requestData() {
+            xhr.open('GET', '../../data.json');
+            xhr.send();
+            xhr.addEventListener('readystatechange', handleStatus, false);
+        }
 
- 	function isRequestOk(data){
- 	  return data.readyState === 4 && data.status === 200;
- 	}
+        function handleStatus() {
+            if (isRequestOk(xhr)) {
+                const data = parseData(xhr);
+                templateSpotlight(data.section);
+                templateBrazil(data.section);
+                templateWorld(data.section);
+            }
+        }
 
- 	function parseData(data){
- 	  return JSON.parse(data.responseText);
- 	}
+        function isRequestOk(data) {
+            return data.readyState === 4 && data.status === 200;
+        }
+
+        function parseData(data) {
+            return JSON.parse(data.responseText);
+        }
 
 
- 	function templateSpotlight(obj){
- 		const info = getData(obj,0);
-    
-    let markup = `
+        function templateSpotlight(obj) {
+            const info = getData(obj, 0);
+
+            let markup = `
 	    <div class="col-xs-6 col-md-6 col-lg-6">
 				<div class="common-box-spotlight">
 					<figure>
@@ -132,14 +132,14 @@
 	        </figcaption>
 		    </div>
 			</div>
-    `
-    box_spotlight.innerHTML = markup;
- 	}
+    `;
+            box_spotlight.innerHTML = markup;
+        }
 
- 	function templateBrazil(obj){
- 		const info = getData(obj,1);
+        function templateBrazil(obj) {
+            const info = getData(obj, 1);
 
- 		let markup = `
+            let markup = `
  			<h2>Brasil</h2>
  			<div class="col-xs-12 col-md-3 col-lg-3">
 				<div class="common-box-spotlight">
@@ -238,14 +238,14 @@
 	        </figcaption>
 		    </div>
 			</div>
- 		`
- 		box_brazil.innerHTML = markup;
- 	}
+ 		`;
+            box_brazil.innerHTML = markup;
+        }
 
- 	function templateWorld(obj){
- 		const info = getData(obj,2);
+        function templateWorld(obj) {
+            const info = getData(obj, 2);
 
- 		let markup = `
+            let markup = `
  			<h3>Mundo</h3>
 	    <div class="col-xs-6 col-md-3 col-lg-3">
 				<div class="common-box-spotlight">
@@ -343,21 +343,21 @@
 	        </figcaption>
 		    </div>
 			</div>
-    `
-    box_world.innerHTML = markup;
- 	}
+    `;
+            box_world.innerHTML = markup;
+        }
 
- 	function getData(elem,index){
-    	const elements = elem.map((item)=> item);
-    	const properties = elements[index].data.map((item)=> item);
+        function getData(elem, index) {
+            const elements = elem.map((item) => item);
+            const properties = elements[index].data.map((item) => item);
 
-    	return properties;
- 	}
+            return properties;
+        }
 
- 	return {
- 		requestData
- 	};
- })();
+        return {
+            requestData
+        };
+    })();
 
- app.requestData();
+    app.requestData();
 })();
